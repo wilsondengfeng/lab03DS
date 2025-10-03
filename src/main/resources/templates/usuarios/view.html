@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      th:replace="fragments/layout :: layout('Detalle de usuario', ~{::content})">
+<body>
+<div th:fragment="content">
+    <h3>Detalle de usuario</h3>
+
+    <div class="card shadow-sm my-3">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3">ID</dt>
+                <dd class="col-sm-9" th:text="${usuario.id}">1</dd>
+
+                <dt class="col-sm-3">Nombre</dt>
+                <dd class="col-sm-9" th:text="${usuario.nombre}">Nombre</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9" th:text="${usuario.email}">email@example.com</dd>
+
+                <dt class="col-sm-3">Rol</dt>
+                <dd class="col-sm-9">
+                    <span class="badge bg-primary" th:if="${usuario.rol=='admin'}" th:text="${usuario.rol}">admin</span>
+                    <span class="badge bg-secondary" th:if="${usuario.rol=='usuario'}" th:text="${usuario.rol}">usuario</span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">Editar</a>
+        <a class="btn btn-secondary" th:href="@{/usuarios}">Volver</a>
+    </div>
+</div>
+</body>
+</html>
